@@ -49,6 +49,7 @@ class TransformerEngineHelperBase:
 
     @staticmethod
     def get_input_bld(original_bld, batch_axes, mdl_axis):
+        # This is used to specify the sharding pattern of inputs to TransformerLayers.
         raise NotImplementedError
 
     @staticmethod
@@ -88,7 +89,7 @@ class TENotInstalledHelper(TransformerEngineHelperBase):
         return layer_p
 
     @staticmethod
-    def get_input_bld(original_bld, _, _):
+    def get_input_bld(original_bld, *_):
         return original_bld
 
     @staticmethod
