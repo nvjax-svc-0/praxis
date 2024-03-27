@@ -239,6 +239,11 @@ class TEInstalledHelper(TransformerEngineHelperBase):
     def get_input_bld(original_bld, batch_axes, mdl_axis):
         if ENABLE_TE_SP:
             return [batch_axes, mdl_axis, None]
+
+        FORCE_NOT_SHARDING_HIDDEN = bool(int(os.environ.get('FORCE_NOT_SHARDING_HIDDEN', 0)))
+        if FORCE_NOT_SHARDING_HIDDEN:
+            return [batch_axes, None, None]
+
         return original_bld
 
     @staticmethod
