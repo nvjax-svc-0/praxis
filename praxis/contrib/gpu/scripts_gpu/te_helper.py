@@ -286,7 +286,8 @@ class TEInstalledHelper(TransformerEngineHelperBase):
                 )
 
             if (
-                transformer_layer_tpl.tr_atten_tpl.proj_tpl.__fn_or_cls__
+                hasattr(transformer_layer_tpl.tr_atten_tpl, "proj_tpl")
+                and transformer_layer_tpl.tr_atten_tpl.proj_tpl.__fn_or_cls__
                 is LoraAttentionProjection
             ):
                 lora_enabled = True
